@@ -1,0 +1,587 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Me / Projects</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    .skills-title{
+margin-top:40px;
+font-size:14px;
+letter-spacing:3px;
+text-transform:uppercase;
+color:#d4af37;
+}
+
+.skills{
+display:flex;
+gap:25px;
+margin-top:20px;
+flex-wrap:wrap;
+}
+
+.skill-item{
+position:relative;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+}
+
+.skills img{
+width:40px;
+padding:1px;
+background:white;
+border-radius:10px;
+border:1px solid rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.skills img:hover{
+border-color:#d4af37;
+box-shadow:0 0 10px rgba(212,175,55,0.4);
+transform:scale(1.08);
+}
+
+.skills img:hover{
+opacity:1;
+transform:scale(1.1);
+}
+
+.skill-item::after{
+content:attr(data-skill);
+position:absolute;
+bottom:calc(100% + 10px);
+left:50%;
+transform:translateX(-50%) translateY(4px);
+padding:5px 9px;
+border-radius:999px;
+font-size:10px;
+letter-spacing:0.08em;
+text-transform:uppercase;
+white-space:nowrap;
+color:var(--text);
+background:rgba(10,10,10,0.92);
+border:1px solid var(--gold-line);
+opacity:0;
+pointer-events:none;
+transition:opacity 0.2s ease, transform 0.2s ease;
+}
+
+.skill-item:hover::after{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+    :root {
+      --bg: #0a0a0a;
+      --panel-left: #0f0f10;
+      --panel-right: #151515;
+      --text: #f5f5f2;
+      --muted: rgba(255, 255, 255, 0.65);
+      --soft: rgba(255, 255, 255, 0.38);
+      --line: rgba(255, 255, 255, 0.08);
+      --line-strong: rgba(255, 255, 255, 0.14);
+      --hover-left: #171718;
+      --hover-right: #1d1d1f;
+      --gold: #d4af37;
+      --gold-soft: rgba(212, 175, 55, 0.18);
+      --gold-line: rgba(212, 175, 55, 0.35);
+      --card: rgba(255, 255, 255, 0.03);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.03), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(212,175,55,0.05), transparent 20%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .split-screen {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+    }
+
+    .split-screen::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--gold-line),
+        transparent
+      );
+      transform: translateX(-50%);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .panel {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: background 0.35s ease;
+      cursor: pointer;
+      isolation: isolate;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at center, rgba(255,255,255,0.04), transparent 58%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 0;
+    }
+
+    .panel::after {
+      content: "";
+      position: absolute;
+      inset: 30px;
+      border: 1px solid transparent;
+      transition: border-color 0.35s ease, transform 0.35s ease;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .panel:hover::before {
+      opacity: 1;
+    }
+
+    .panel:hover::after {
+      border-color: var(--gold-line);
+      transform: scale(0.98);
+    }
+
+    .panel.me {
+      background: linear-gradient(180deg, var(--panel-left), #0b0b0c);
+    }
+
+    .panel.projects {
+      background: linear-gradient(180deg, var(--panel-right), #111112);
+    }
+
+    .panel.me:hover {
+      background: linear-gradient(180deg, var(--hover-left), #101011);
+    }
+
+    .panel.projects:hover {
+      background: linear-gradient(180deg, var(--hover-right), #141416);
+    }
+
+    .panel-inner {
+      position: relative;
+      z-index: 2;
+      width: min(80%, 540px);
+      text-align: center;
+    }
+
+    .panel-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(72px, 11vw, 130px);
+      font-weight: 600;
+      letter-spacing: -0.05em;
+      line-height: 0.88;
+      color: var(--text);
+      transition: transform 0.45s ease, color 0.35s ease;
+    }
+
+    .panel-sub {
+      margin-top: 24px;
+      font-size: 11px;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.35s ease, transform 0.45s ease;
+    }
+
+    .panel-desc {
+      margin-top: 14px;
+      max-width: 430px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--muted);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.4s ease 0.05s, transform 0.45s ease 0.05s;
+    }
+
+    .panel-link {
+      margin-top: 24px;
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.4s ease 0.1s, transform 0.45s ease 0.1s, color 0.3s ease;
+    }
+
+    .panel:hover .panel-title {
+      transform: translateY(-18px);
+      color: #ffffff;
+    }
+
+    .panel:hover .panel-sub,
+    .panel:hover .panel-desc,
+    .panel:hover .panel-link {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .panel:hover .panel-link {
+      color: var(--gold);
+    }
+
+    .section {
+      min-height: 100vh;
+      padding: 100px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(180deg, #0b0b0c 0%, #111112 100%);
+      border-top: 1px solid var(--line);
+    }
+
+    .section-box {
+      width: min(100%, 980px);
+    }
+
+    .section-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.38em;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(50px, 7vw, 110px);
+      line-height: 0.93;
+      margin-bottom: 24px;
+      color: var(--text);
+    }
+
+    .bio-block {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin: 8px 0 28px;
+    }
+
+    .bio-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      gap: 6px;
+    }
+
+    .bio-photo {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: none;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .bio-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 34px;
+      line-height: 1;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+
+    .bio-title {
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .me-content {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      margin-bottom: 42px;
+    }
+
+    .section-text {
+      max-width: 740px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.95;
+      margin-bottom: 42px;
+    }
+
+    .me-content .section-text {
+      margin-bottom: 0;
+      padding-left: 30px;
+      border-left: 1px solid var(--gold-line);
+    }
+
+    .company-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      padding: 30px;
+      border-radius: 28px;
+      max-width: 780px;
+      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+    }
+
+    .company-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      box-shadow: 0 18px 60px rgba(0,0,0,0.35);
+    }
+
+    .company-name {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 60px;
+      line-height: 0.95;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .company-role {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .company-text {
+      color: var(--muted);
+      line-height: 1.95;
+      margin-bottom: 24px;
+      max-width: 620px;
+    }
+
+    .company-button {
+      display: inline-block;
+      padding: 13px 20px;
+      border: 1px solid var(--gold-line);
+      border-radius: 999px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: var(--gold);
+      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .company-button:hover {
+      background: var(--gold);
+      color: #0a0a0a;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px var(--gold-soft);
+    }
+
+    .back-top {
+      margin-top: 32px;
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--soft);
+      transition: color 0.3s ease;
+    }
+
+    .back-top:hover {
+      color: var(--gold);
+    }
+
+    @media (max-width: 820px) {
+      .split-screen {
+        grid-template-columns: 1fr;
+      }
+
+      .split-screen::before {
+        display: none;
+      }
+
+      .panel {
+        min-height: 50vh;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .panel:last-child {
+        border-bottom: none;
+      }
+
+      .panel-title {
+        font-size: clamp(58px, 14vw, 115px);
+      }
+
+      .panel:hover .panel-title {
+        transform: translateY(-10px);
+      }
+
+      .section {
+        padding: 72px 20px;
+      }
+
+      .company-name {
+        font-size: 44px;
+      }
+
+      .bio-photo {
+        width: 88px;
+        height: 88px;
+      }
+
+      .bio-name {
+        font-size: 27px;
+      }
+
+      .me-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      .me-content .section-text {
+        padding-left: 0;
+        border-left: none;
+        border-top: 1px solid var(--gold-line);
+        padding-top: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="split-screen" id="home">
+    <a href="#me" class="panel me">
+      <div class="panel-inner">
+        <h1 class="panel-title">ME</h1>
+        <div class="panel-sub">Profile / About</div>
+        <p class="panel-desc">
+          Profil, hakkimda.
+        </p>
+        <span class="panel-link">Enter</span>
+      </div>
+    </a>
+
+</div>
+    <a href="#projects" class="panel projects">
+      <div class="panel-inner">
+        <h1 class="panel-title">PROJECTS</h1>
+        <div class="panel-sub">2U2B / Projects</div>
+        <p class="panel-desc">
+          Projelerim.
+        </p>
+        <span class="panel-link">View Projects</span>
+      </div>
+    </a>
+  </main>
+
+  <section class="section" id="me">
+    <div class="section-box">
+      <div class="section-label">Me</div>
+      <h2 class="section-title">A refined personal introduction.</h2>
+      <div class="me-content">
+        <div class="bio-block">
+          <img class="bio-photo" src="me.jpg" alt="Sedat Ulubaba profile photo" />
+          <div class="bio-text">
+            <div class="bio-name">Sedat Ulubaba</div>
+            <div class="bio-title">Endustrial Engineering Major Student</div>
+          </div>
+        </div>
+        <p class="section-text">
+       I am an engineering student exploring technology, data, and digital creation. I am currently developing my path toward becoming a data analyst while learning to build and create my own digital projects.
+
+In the long term, I aim to build independent work and establish my own studio. 2u2b is the starting point of that vision â€” a future studio for video games, software, and experimental products.
+.
+        </p>
+      </div>
+      <h3 class="skills-title">Tools & Skills</h3>
+
+<div class="skills">
+  <div class="skill-item" data-skill="Vibecode">
+    <img src="vibecode.png" alt="Vibecode">
+  </div>
+  <div class="skill-item" data-skill="VS Code">
+    <img src="vscode.png" alt="VS Code">
+  </div>
+  <div class="skill-item" data-skill="Excel">
+    <img src="excel.png" alt="Excel">
+  </div>
+  <div class="skill-item" data-skill="Unity">
+    <img src="unity.png" alt="Unity">
+  </div>
+</div>
+      <a class="back-top" href="#home">Back to cover</a>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="section-box">
+      <div class="section-label">Projects</div>
+      <h2 class="section-title">2U2B catisi altindaki projelerim.</h2>
+      <p class="section-text">
+       Projelerimi 2U2B adı altinda yer alir.
+      </p>
+
+      <div class="company-card">
+        <div class="company-name">Projelerim</div>
+        <div class="company-role"></div>
+        <p class="company-text">
+         
+        </p>
+        <a class="company-button" href="2u2b.html">Go to 2u2b</a>
+      </div>
+
+      <a class="back-top" href="#home">Back to cover</a>
+    </div>
+  </section>
+
+</body>
+</html>
+
