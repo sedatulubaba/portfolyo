@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Me / Projects</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@300,400,500,600,700&display=swap" rel="stylesheet">
 
   <style>
 .skills-title{
@@ -15,7 +13,7 @@ margin-top:40px;
 font-size:14px;
 letter-spacing:3px;
 text-transform:uppercase;
-color:#d4af37;
+color:var(--gold);
 }
 
 .social-links{
@@ -60,15 +58,15 @@ justify-content:center;
 .skills img{
 width:40px;
 padding:1px;
-background:white;
+background:var(--text);
 border-radius:10px;
-border:1px solid rgba(0,0,0,0.1);
+border:1px solid rgba(78,31,0,0.22);
 transition:0.3s;
 }
 
 .skills img:hover{
-border-color:#d4af37;
-box-shadow:0 0 10px rgba(212,175,55,0.4);
+border-color:var(--gold);
+box-shadow:0 0 10px var(--gold-soft);
 transform:scale(1.08);
 }
 
@@ -90,7 +88,7 @@ letter-spacing:0.08em;
 text-transform:uppercase;
 white-space:nowrap;
 color:var(--text);
-background:rgba(10,10,10,0.92);
+background:rgba(48,54,79,0.92);
 border:1px solid var(--gold-line);
 opacity:0;
 pointer-events:none;
@@ -102,20 +100,20 @@ opacity:1;
 transform:translateX(-50%) translateY(0);
 }
     :root {
-      --bg: #0a0a0a;
-      --panel-left: #0f0f10;
-      --panel-right: #151515;
-      --text: #f5f5f2;
-      --muted: rgba(255, 255, 255, 0.65);
-      --soft: rgba(255, 255, 255, 0.38);
-      --line: rgba(255, 255, 255, 0.08);
-      --line-strong: rgba(255, 255, 255, 0.14);
-      --hover-left: #171718;
-      --hover-right: #1d1d1f;
-      --gold: #d4af37;
-      --gold-soft: rgba(212, 175, 55, 0.18);
-      --gold-line: rgba(212, 175, 55, 0.35);
-      --card: rgba(255, 255, 255, 0.03);
+      --bg: #30364f;
+      --panel-left: #30364f;
+      --panel-right: #3a415e;
+      --text: #f8f4e1;
+      --muted: rgba(248, 244, 225, 0.78);
+      --soft: rgba(248, 244, 225, 0.62);
+      --line: rgba(248, 244, 225, 0.16);
+      --line-strong: rgba(248, 244, 225, 0.28);
+      --hover-left: #3b4363;
+      --hover-right: #464f74;
+      --gold: #feba17;
+      --gold-soft: rgba(254, 186, 23, 0.24);
+      --gold-line: rgba(254, 186, 23, 0.45);
+      --card: rgba(248, 244, 225, 0.06);
     }
 
     * {
@@ -129,10 +127,10 @@ transform:translateX(-50%) translateY(0);
     }
 
     body {
-      font-family: "Inter", sans-serif;
+      font-family: "Switzer", sans-serif;
       background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.03), transparent 25%),
-        radial-gradient(circle at bottom right, rgba(212,175,55,0.05), transparent 20%),
+        radial-gradient(circle at top left, rgba(248,244,225,0.07), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(254,186,23,0.12), transparent 22%),
         var(--bg);
       color: var(--text);
       min-height: 100vh;
@@ -211,19 +209,19 @@ transform:translateX(-50%) translateY(0);
     }
 
     .panel.me {
-      background: linear-gradient(180deg, var(--panel-left), #0b0b0c);
+      background: linear-gradient(180deg, var(--panel-left), #2b3147);
     }
 
     .panel.projects {
-      background: linear-gradient(180deg, var(--panel-right), #111112);
+      background: linear-gradient(180deg, var(--panel-right), #333a55);
     }
 
     .panel.me:hover {
-      background: linear-gradient(180deg, var(--hover-left), #101011);
+      background: linear-gradient(180deg, var(--hover-left), #303754);
     }
 
     .panel.projects:hover {
-      background: linear-gradient(180deg, var(--hover-right), #141416);
+      background: linear-gradient(180deg, var(--hover-right), #3b4466);
     }
 
     .panel-inner {
@@ -234,7 +232,7 @@ transform:translateX(-50%) translateY(0);
     }
 
     .panel-title {
-      font-family: "Cormorant Garamond", serif;
+      font-family: "Switzer", sans-serif;
       font-size: clamp(72px, 11vw, 130px);
       font-weight: 600;
       letter-spacing: -0.05em;
@@ -281,7 +279,7 @@ transform:translateX(-50%) translateY(0);
 
     .panel:hover .panel-title {
       transform: translateY(-18px);
-      color: #ffffff;
+      color: var(--text);
     }
 
     .panel:hover .panel-sub,
@@ -302,8 +300,12 @@ transform:translateX(-50%) translateY(0);
       align-items: center;
       justify-content: center;
       background:
-        linear-gradient(180deg, #0b0b0c 0%, #111112 100%);
+        linear-gradient(180deg, #2f3550 0%, #30364f 100%);
       border-top: 1px solid var(--line);
+    }
+
+    #me.section {
+      background: linear-gradient(180deg, #15133c 0%, #100f30 100%);
     }
 
     .section-box {
@@ -319,7 +321,7 @@ transform:translateX(-50%) translateY(0);
     }
 
     .section-title {
-      font-family: "Cormorant Garamond", serif;
+      font-family: "Switzer", sans-serif;
       font-size: clamp(50px, 7vw, 110px);
       line-height: 0.93;
       margin-bottom: 24px;
@@ -354,7 +356,7 @@ transform:translateX(-50%) translateY(0);
     }
 
     .bio-name {
-      font-family: "Cormorant Garamond", serif;
+      font-family: "Switzer", sans-serif;
       font-size: 34px;
       line-height: 1;
       color: var(--text);
@@ -399,6 +401,38 @@ transform:translateX(-50%) translateY(0);
       box-shadow: 0 0 0 rgba(0,0,0,0);
     }
 
+    #projects .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    #projects .projects-grid .company-card {
+      max-width: none;
+      margin-top: 0 !important;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      padding: 18px;
+    }
+
+    #projects .projects-grid .company-name {
+      font-size: 34px;
+    }
+
+    #projects .projects-grid .company-text {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 16px;
+      overflow: auto;
+    }
+
+    #projects .projects-grid .company-button {
+      margin-top: auto;
+      align-self: flex-start;
+    }
+
     .company-card:hover {
       transform: translateY(-4px);
       border-color: var(--gold-line);
@@ -407,7 +441,7 @@ transform:translateX(-50%) translateY(0);
     }
 
     .company-name {
-      font-family: "Cormorant Garamond", serif;
+      font-family: "Switzer", sans-serif;
       font-size: 60px;
       line-height: 0.95;
       margin-bottom: 10px;
@@ -443,7 +477,7 @@ transform:translateX(-50%) translateY(0);
 
     .company-button:hover {
       background: var(--gold);
-      color: #0a0a0a;
+      color: #30364f;
       transform: translateY(-2px);
       box-shadow: 0 10px 28px var(--gold-soft);
     }
@@ -494,6 +528,10 @@ transform:translateX(-50%) translateY(0);
 
       .company-name {
         font-size: 44px;
+      }
+
+      #projects .projects-grid {
+        grid-template-columns: 1fr;
       }
 
       .bio-photo {
@@ -585,6 +623,11 @@ In the long term, I aim to build independent work and establish my own studio. 2
         <a class="social-link" href="https://www.linkedin.com/in/sedat-ulubaba-4a9919307/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a class="social-link" href="https://github.com/sedatulubaba" target="_blank" rel="noopener noreferrer">GitHub</a>
       </div>
+      <h3 class="skills-title">CV</h3>
+      <div class="social-links">
+        <a class="social-link" href="cv_tr.pdf" target="_blank" rel="noopener noreferrer">CV (Turkce)</a>
+        <a class="social-link" href="cv_en.pdf" target="_blank" rel="noopener noreferrer">CV (English)</a>
+      </div>
       <a class="back-top" href="#home">Back to cover</a>
     </div>
   </section>
@@ -593,35 +636,34 @@ In the long term, I aim to build independent work and establish my own studio. 2
     <div class="section-box">
       <div class="section-label">Projects</div>
       <h2 class="section-title">2u2b catisi altindaki projelerim.</h2>
-      <p class="section-text">
-       Projelerim 2u2b adı altinda yer alir.
-      </p>
 
-      <div class="company-card">
-        <div class="company-name">Projelerim</div>
-        <div class="company-role"></div>
-        <p class="company-text">
-         
-        </p>
-        <a class="company-button" href="2u2b.html">Go to 2u2b</a>
-      </div>
+      <div class="projects-grid">
+        <div class="company-card">
+          <div class="company-name">2u2b</div>
+          <div class="company-role">Creative Studio / Main Hub</div>
+          <p class="company-text">
+            2u2b, dijital projelerimi tek cati altinda topladigim ana merkez. Yazilim, oyun ve deneysel urun fikirleri bu merkezde sekilleniyor.
+          </p>
+          <a class="company-button" href="2u2b.html">Go to 2u2b</a>
+        </div>
 
-      <div class="company-card" style="margin-top: 22px;">
-        <div class="company-name">KalorieAI</div>
-        <div class="company-role">Web App / Nutrition Assistant</div>
-        <p class="company-text">
-          KalorieAI, kullanicinin gunluk beslenme takibini daha kolay hale getiren bir web uygulamasi. Temiz bir arayuz ile kalori odakli planlama, takip ve daha bilincli yeme aliskanliklari olusturma surecine destek verir.
-        </p>
-        <a class="company-button" href="#" aria-disabled="true">Site aktif degil, bakimda</a>
-      </div>
+        <div class="company-card">
+          <div class="company-name">KalorieAI</div>
+          <div class="company-role">Web App / Nutrition Assistant</div>
+          <p class="company-text">
+            KalorieAI, kullanicinin gunluk beslenme takibini daha kolay hale getiren bir web uygulamasi. Temiz bir arayuz ile kalori odakli planlama, takip ve daha bilincli yeme aliskanliklari olusturma surecine destek verir.
+          </p>
+          <a class="company-button" href="#" aria-disabled="true">Site aktif degil, bakimda</a>
+        </div>
 
-      <div class="company-card" style="margin-top: 22px;">
-        <div class="company-name">monkPlanner</div>
-        <div class="company-role">Web App / Planner</div>
-        <p class="company-text">
-          monkPlanner, planlama ve gunluk duzen takibini daha pratik hale getirmek icin gelistirdigim bir proje.
-        </p>
-        <a class="company-button" href="https://sedatulubaba.github.io/monkPlanner/" target="_blank" rel="noopener noreferrer">Visit monkPlanner</a>
+        <div class="company-card">
+          <div class="company-name">monkPlanner</div>
+          <div class="company-role">Web App / Planner</div>
+          <p class="company-text">
+            monkPlanner, planlama ve gunluk duzen takibini daha pratik hale getirmek icin gelistirdigim bir proje.
+          </p>
+          <a class="company-button" href="https://sedatulubaba.github.io/monkPlanner/" target="_blank" rel="noopener noreferrer">Visit monkPlanner</a>
+        </div>
       </div>
 
       <a class="back-top" href="#home">Back to cover</a>
