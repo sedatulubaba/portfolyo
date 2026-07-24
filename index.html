@@ -124,6 +124,7 @@ transform:translateX(-50%) translateY(0);
 
     html {
       scroll-behavior: smooth;
+      scroll-snap-type: y proximity;
     }
 
     body {
@@ -147,6 +148,8 @@ transform:translateX(-50%) translateY(0);
       display: grid;
       grid-template-columns: 1fr 1fr;
       position: relative;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
     }
 
     .split-screen::before {
@@ -299,6 +302,8 @@ transform:translateX(-50%) translateY(0);
       display: flex;
       align-items: center;
       justify-content: center;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
       background:
         linear-gradient(180deg, #2f3550 0%, #30364f 100%);
       border-top: 1px solid var(--line);
@@ -497,6 +502,15 @@ transform:translateX(-50%) translateY(0);
     }
 
     @media (max-width: 820px) {
+      html {
+        scroll-snap-type: y proximity;
+      }
+
+      .split-screen,
+      .section {
+        scroll-snap-stop: normal;
+      }
+
       .split-screen {
         grid-template-columns: 1fr;
       }
@@ -666,6 +680,24 @@ In the long term, I aim to build independent work and establish my own studio. 2
             monkPlanner, planlama ve gunluk duzen takibini daha pratik hale getirmek icin gelistirdigim bir proje.
           </p>
           <a class="company-button" href="https://sedatulubaba.github.io/monkPlanner/" target="_blank" rel="noopener noreferrer">Visit monkPlanner</a>
+        </div>
+
+        <div class="company-card">
+          <div class="company-name">2U2B Digital</div>
+          <div class="company-role">AI &amp; Software / Business Solutions</div>
+          <p class="company-text">
+            Isletmeler icin moduler yapay zeka araclari, otomasyonlar ve ozel yazilim cozumleri.
+          </p>
+          <a class="company-button" href="https://2u2bdigital.vercel.app/" target="_blank" rel="noopener noreferrer">Visit 2U2B Digital</a>
+        </div>
+
+        <div class="company-card">
+          <div class="company-name">FitStart7</div>
+          <div class="company-role">Android App / Fitness Guide</div>
+          <p class="company-text">
+            Spor salonu temellerini 7 gunluk sade bir rehberle ogrenmeye yardimci olan Android uygulamasi.
+          </p>
+          <a class="company-button" href="https://play.google.com/store/apps/details?id=com.sedatulubaba.fitstart7" target="_blank" rel="noopener noreferrer">View on Google Play</a>
         </div>
       </div>
 
